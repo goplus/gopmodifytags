@@ -1,0 +1,8 @@
+type x struct {
+    Foo int
+    bar int
+}
+type y struct {
+    Foo int
+    bar int
+}

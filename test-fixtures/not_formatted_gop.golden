@@ -1,0 +1,9 @@
+type x struct {
+	Foo int `json:"foo"`
+	bar int `json:"bar"`
+}
+
+type y struct {
+	Foo int
+	bar int
+}

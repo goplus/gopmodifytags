@@ -7,11 +7,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"go/ast"
-	"go/format"
-	"go/parser"
-	"go/printer"
-	"go/token"
 	"io"
 	"io/ioutil"
 	"os"
@@ -22,6 +17,11 @@ import (
 
 	"github.com/fatih/camelcase"
 	"github.com/fatih/structtag"
+	"github.com/goplus/gop/ast"
+	"github.com/goplus/gop/format"
+	"github.com/goplus/gop/parser"
+	"github.com/goplus/gop/printer"
+	"github.com/goplus/gop/token"
 	"golang.org/x/tools/go/buildutil"
 )
 

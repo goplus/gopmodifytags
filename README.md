@@ -1,19 +1,16 @@
-# gomodifytags [![](https://github.com/fatih/gomodifytags/workflows/build/badge.svg)](https://github.com/fatih/gomodifytags/actions)
+# gopmodifytags [![](https://github.com/goplus/gopmodifytags/workflows/build/badge.svg)](https://github.com/goplus/gopmodifytags/actions)
 
-Go tool to modify/update field tags in structs. `gomodifytags` makes it easy to
+Go+ tool to modify/update field tags in structs. `gopmodifytags` makes it easy to
 update, add or delete the tags in a struct field. You can easily add new tags,
 update existing tags (such as appending a new key, i.e: `db`, `xml`, etc..) or
 remove existing tags. It also allows you to add and remove tag options. It's
 intended to be used by an editor, but also has modes to run it from the
 terminal. Read the usage section below for more information.
 
-![gomodifytags](https://user-images.githubusercontent.com/438920/32691304-a1c7e47c-c716-11e7-977c-f4d0f8c616be.gif)
-
-
 # Install
 
 ```bash
-go install github.com/fatih/gomodifytags@latest
+go install github.com/goplus/gopmodifytags@latest
 ```
 
 # Supported editors
@@ -23,11 +20,11 @@ go install github.com/fatih/gomodifytags@latest
 * [vscode-go](https://github.com/golang/vscode-go) with commands `Go: Add Tags` and `Go: Remove Tags`
 * [A (Acme)](https://github.com/davidrjenni/A) with commands `addtags` and `rmtags`
 * [emacs-go-tag](https://github.com/brantou/emacs-go-tag) with commands `go-tag-add` and `go-tag-remove`
-* [TextMate2](https://github.com/vigo/textmate2-gomodifytags)
+* [TextMate2](https://github.com/vigo/textmate2-gopmodifytags)
 
 # Usage
 
-`gomodifytags` has multiple ways to modify a tag. Let's start with an example package:
+`gopmodifytags` has multiple ways to modify a tag. Let's start with an example package:
 
 ```go
 package main
@@ -47,7 +44,7 @@ type Server struct {
 We have to first pass a file. For that we can use the `-file` flag:
 
 ```sh
-$ gomodifytags -file demo.go
+$ gopmodifytags -file demo.go
 -line, -offset, -struct or -all is not passed
 ```
 
@@ -70,7 +67,7 @@ to change:
 Let's continue by using the `-struct` tag:
 
 ```
-$ gomodifytags -file demo.go -struct Server
+$ gopmodifytags -file demo.go -struct Server
 one of [-add-tags, -add-options, -remove-tags, -remove-options, -clear-tags, -clear-options] should be defined
 ```
 
@@ -81,7 +78,7 @@ tags. The following will add the `json` key to all fields. The value will be
 automatically inherited from the field name and transformed to `snake_case`:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json
+$ gopmodifytags -file demo.go -struct Server -add-tags json
 ```
 ```go
 package main
@@ -103,20 +100,20 @@ changes before making destructive changes. If you want to change it permanently,
 pass the `-w` (write) flag.
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json -w
+$ gopmodifytags -file demo.go -struct Server -add-tags json -w
 ```
 
 You can disable printing the results to stdout with the `--quiet` flag:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json -w --quiet
+$ gopmodifytags -file demo.go -struct Server -add-tags json -w --quiet
 ```
 
 You can pass multiple keys to add tags. The following will add `json` and `xml`
 keys:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json,xml
+$ gopmodifytags -file demo.go -struct Server -add-tags json,xml
 ```
 ```go
 package main
@@ -139,7 +136,7 @@ following example uses the `camelcase` transformation rule:
 
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json,xml -transform camelcase
+$ gopmodifytags -file demo.go -struct Server -add-tags json,xml -transform camelcase
 ```
 ```go
 package main
@@ -168,7 +165,7 @@ prefixing them (`field_name=<your_value>`). The `--template` flag allows you to
 specify a custom format for the tag value to be applied.
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags gaum -template "field_name={field}" 
+$ gopmodifytags -file demo.go -struct Server -add-tags gaum -template "field_name={field}" 
 ```
 
 ```go
@@ -183,7 +180,7 @@ type Server struct {
 ```
 
 The `{field}` word is a special keyword that is replaced by the struct tag's value
-**after** the [transformation](https://github.com/fatih/gomodifytags#transformations). 
+**after** the [transformation](https://github.com/goplus/gopmodifytags#transformations). 
 
 ### Transformations
 
@@ -202,7 +199,7 @@ operations. The following example adds the `json` key, a `validate` key with
 the value set to `gt=1` and the `scope` key with the value `read-only`:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json,validate:gt=1,scope:read-only
+$ gopmodifytags -file demo.go -struct Server -add-tags json,validate:gt=1,scope:read-only
 ```
 ```go
 package main
@@ -224,7 +221,7 @@ example below we're going to add the `json` key and the `omitempty` option to
 all json keys:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json -add-options json=omitempty
+$ gopmodifytags -file demo.go -struct Server -add-tags json -add-options json=omitempty
 ```
 ```go
 package main
@@ -252,7 +249,7 @@ future. However if you don't like this behavior, you can skip it by passing the
 `--skip-unexported` flag:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags json --skip-unexported
+$ gopmodifytags -file demo.go -struct Server -add-tags json --skip-unexported
 ```
 ```go
 package main
@@ -287,7 +284,7 @@ type Server struct {
 To remove the xml tags, we're going to use the `-remove-tags` flag:
 
 ```
-$ gomodifytags -file demo.go -struct Server -remove-tags xml
+$ gopmodifytags -file demo.go -struct Server -remove-tags xml
 ```
 ```go
 package main
@@ -307,7 +304,7 @@ type Server struct {
 You can also remove multiple tags. The example below removs `json` and `xml`:
 
 ```
-$ gomodifytags -file demo.go -struct Server -remove-tags json,xml
+$ gopmodifytags -file demo.go -struct Server -remove-tags json,xml
 ```
 ```go
 package main
@@ -328,7 +325,7 @@ If you want to remove all keys, we can also use the `-clear-tags` flag. This
 flag removes all tags and doesn't require to explicitly pass the key names:
 
 ```
-$ gomodifytags -file demo.go -struct Server -clear-tags
+$ gopmodifytags -file demo.go -struct Server -clear-tags
 ```
 ```go
 package main
@@ -349,7 +346,7 @@ To remove any option, we can use the `-remove-options` flag. The following will
 remove all `omitempty` flags from the `json` key:
 
 ```
-$ gomodifytags -file demo.go -struct Server -remove-options json=omitempty
+$ gopmodifytags -file demo.go -struct Server -remove-options json=omitempty
 ```
 ```go
 package main
@@ -369,7 +366,7 @@ type Server struct {
 To remove multiple options from multiple tags just add another options:
 
 ```
-$ gomodifytags -file demo.go -struct Server -remove-options json=omitempty,xml=cdata
+$ gopmodifytags -file demo.go -struct Server -remove-options json=omitempty,xml=cdata
 ```
 ```go
 package main
@@ -391,7 +388,7 @@ we can use the `-clear-options` flag. The following example will remove all
 options for the given struct:
 
 ```
-$ gomodifytags -file demo.go -struct Server -clear-options
+$ gopmodifytags -file demo.go -struct Server -clear-options
 ```
 ```go
 package main
@@ -432,7 +429,7 @@ for the `Credentials` struct (including the fields) for the following code (line
 To remove the tags for the credentials we're going to pass the `-line` flag:
 
 ```
-$ gomodifytags -file demo.go -line 8,11 -clear-tags xml
+$ gopmodifytags -file demo.go -line 8,11 -clear-tags xml
 ```
 ```go
 package main
@@ -454,7 +451,7 @@ field. The following example will remove the `xml` tags for the lines 6 and 7
 (fields with names of `EnableLogs` and `BaseDomain`):
 
 ```
-$ gomodifytags -file demo.go -line 6,7 -remove-tags xml
+$ gopmodifytags -file demo.go -line 6,7 -remove-tags xml
 ```
 ```go
 package main
@@ -475,7 +472,7 @@ The same logic applies to adding tags or any other option as well. To add the
 `bson` tag to the lines between 5 and 7, we can use the following example:
 
 ```
-$ gomodifytags -file demo.go -line 5,7 -add-tags bson
+$ gopmodifytags -file demo.go -line 5,7 -add-tags bson
 ```
 ```go
 package main
@@ -526,7 +523,7 @@ If we add the `xml` tag and tell to output the format in json  with the
 `-format` flag, the following will be printed:
 
 ```
-$ gomodifytags -file demo.go -struct Server -add-tags xml -format json
+$ gopmodifytags -file demo.go -struct Server -add-tags xml -format json
 ```
 ```json
 {
@@ -572,7 +569,7 @@ endfor
 
 ### Unsaved files
 
-Editors can supply `gomodifytags` with the contents of unsaved buffers by using
+Editors can supply `gopmodifytags` with the contents of unsaved buffers by using
 the `-modified` flag and writing an archive to stdin.  Files in the archive
 will be preferred over those on disk.
 
@@ -586,12 +583,12 @@ Each archive entry consists of:
 At least Go `v1.11.x` is required. Older versions might work, but it's not
 recommended.
 
-`gomodifytags` uses [Go modules](https://github.com/golang/go/wiki/Modules) for
+`gopmodifytags` uses [Go modules](https://github.com/golang/go/wiki/Modules) for
 dependency management. This means that you don't have to `go get` it into a
 GOPATH anymore. Checkout the repository:
 
 ```
-git clone https://github.com/fatih/gomodifytags.git
+git clone https://github.com/goplus/gopmodifytags.git
 ```
 
 Start developing the code. To build a binary, execute:
@@ -600,7 +597,7 @@ Start developing the code. To build a binary, execute:
 GO111MODULE=on go build -mod=vendor
 ```
 
-This will create a `gomodifytags` binary in the current directory. To test the
+This will create a `gopmodifytags` binary in the current directory. To test the
 package, run the following:
 
 ```

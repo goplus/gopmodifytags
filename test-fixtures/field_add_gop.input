@@ -1,0 +1,5 @@
+type foo struct {
+	bar       string
+	qaz, qux  string
+	timestamp time.Time
+}

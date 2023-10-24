@@ -1,0 +1,6 @@
+type foo struct {
+	bar string
+	t   bool `json`
+	a   []string
+	b   bool 
+}

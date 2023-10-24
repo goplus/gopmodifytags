@@ -1,0 +1,9 @@
+type foo struct {
+	// a comment about b
+
+	bar string
+	t   bool
+
+	// a comment about b
+	// b []string
+}
