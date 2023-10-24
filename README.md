@@ -13,15 +13,6 @@ terminal. Read the usage section below for more information.
 go install github.com/goplus/gopmodifytags@latest
 ```
 
-# Supported editors
-
-* [vim-go](https://github.com/fatih/vim-go) with `:GoAddTags` and `:GoRemoveTags`
-* [go-plus (atom)](https://github.com/joefitzgerald/go-plus) with commands `golang:add-tags` and `golang:remove-tags`
-* [vscode-go](https://github.com/golang/vscode-go) with commands `Go: Add Tags` and `Go: Remove Tags`
-* [A (Acme)](https://github.com/davidrjenni/A) with commands `addtags` and `rmtags`
-* [emacs-go-tag](https://github.com/brantou/emacs-go-tag) with commands `go-tag-add` and `go-tag-remove`
-* [TextMate2](https://github.com/vigo/textmate2-gopmodifytags)
-
 # Usage
 
 `gopmodifytags` has multiple ways to modify a tag. Let's start with an example package:
