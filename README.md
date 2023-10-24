@@ -1,4 +1,4 @@
-# gopmodifytags [![](https://github.com/goplus/gopmodifytags/workflows/build/badge.svg)](https://github.com/goplus/gopmodifytags/actions)
+# gopmodifytags [![](https://github.com/goplus/gopmodifytags/actions/workflows/go.yml/badge.svg)](https://github.com/goplus/gopmodifytags/actions)
 
 Go+ tool to modify/update field tags in structs. `gopmodifytags` makes it easy to
 update, add or delete the tags in a struct field. You can easily add new tags,
