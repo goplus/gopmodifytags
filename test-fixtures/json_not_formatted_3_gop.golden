@@ -1,0 +1,10 @@
+{
+  "start": 1,
+  "end": 4,
+  "lines": [
+    "type x struct {",
+    "\tFoo int `json:\"foo\"`",
+    "\tbar int `json:\"bar\"`",
+    "}"
+  ]
+}

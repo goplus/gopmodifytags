@@ -1,0 +1,7 @@
+{
+  "start": 2,
+  "end": 2,
+  "lines": [
+    "\tFoo int `json:\"foo\"`"
+  ]
+}

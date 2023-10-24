@@ -1,0 +1,4 @@
+func test(arg struct {
+	Field int `json:"field"`
+}) {
+}

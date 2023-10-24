@@ -340,11 +340,29 @@ func TestRewrite(t *testing.T) {
 			},
 		},
 		{
+			file: "offset_add_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				offset:    19,
+				transform: "snakecase",
+			},
+		},
+		{
 			file: "offset_add_composite",
 			cfg: &config{
 				add:       []string{"json"},
 				output:    "source",
 				offset:    40,
+				transform: "snakecase",
+			},
+		},
+		{
+			file: "offset_add_composite_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				offset:    10,
 				transform: "snakecase",
 			},
 		},
@@ -363,6 +381,15 @@ func TestRewrite(t *testing.T) {
 				add:       []string{"json"},
 				output:    "source",
 				offset:    46,
+				transform: "snakecase",
+			},
+		},
+		{
+			file: "offset_add_literal_in_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				offset:    17,
 				transform: "snakecase",
 			},
 		},
@@ -412,6 +439,15 @@ func TestRewrite(t *testing.T) {
 			},
 		},
 		{
+			file: "not_formatted_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				line:      "2,3",
+				transform: "snakecase",
+			},
+		},
+		{
 			file: "skip_private",
 			cfg: &config{
 				add:                  []string{"json"},
@@ -451,6 +487,15 @@ func TestRewrite(t *testing.T) {
 			},
 		},
 		{
+			file: "all_structs_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				all:       true,
+				transform: "snakecase",
+			},
+		},
+		{
 			file: "line_titlecase_add",
 			cfg: &config{
 				add:       []string{"json"},
@@ -470,6 +515,16 @@ func TestRewrite(t *testing.T) {
 		},
 		{
 			file: "field_add",
+			cfg: &config{
+				add:        []string{"json"},
+				output:     "source",
+				structName: "foo",
+				fieldName:  "bar",
+				transform:  "snakecase",
+			},
+		},
+		{
+			file: "field_add_gop",
 			cfg: &config{
 				add:        []string{"json"},
 				output:     "source",
@@ -531,6 +586,15 @@ func TestRewrite(t *testing.T) {
 				add:       []string{"json"},
 				output:    "source",
 				offset:    45,
+				transform: "camelcase",
+			},
+		},
+		{
+			file: "offset_anonymous_struct_gop",
+			cfg: &config{
+				add:       []string{"json"},
+				output:    "source",
+				offset:    31,
 				transform: "camelcase",
 			},
 		},
@@ -712,6 +776,101 @@ func TestJSON(t *testing.T) {
 		},
 		{
 			file: "json_all_structs",
+			cfg: &config{
+				add: []string{"json"},
+				all: true,
+			},
+		},
+		{
+			file: "json_single_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "3",
+			},
+		},
+		{
+			file: "json_full_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "2,4",
+			},
+		},
+		{
+			file: "json_intersection_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "3,14",
+			},
+		},
+		{
+			// both small & end range larger than file
+			file: "json_single_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "28,30", // invalid selection
+			},
+			err: errors.New("line selection is invalid"),
+		},
+		{
+			// end range larger than file
+			file: "json_single_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "2,48", // invalid selection
+			},
+			err: errors.New("line selection is invalid"),
+		},
+		{
+			file: "json_errors_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "2,5",
+			},
+		},
+		{
+			file: "json_not_formatted_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "2,3",
+			},
+		},
+		{
+			file: "json_not_formatted_2_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "2,2",
+			},
+		},
+		{
+			file: "json_not_formatted_3_gop",
+			cfg: &config{
+				add:    []string{"json"},
+				offset: 13,
+			},
+		},
+		{
+			file: "json_not_formatted_4_gop",
+			cfg: &config{
+				add:    []string{"json"},
+				offset: 41,
+			},
+		},
+		{
+			file: "json_not_formatted_5_gop",
+			cfg: &config{
+				add:    []string{"json"},
+				offset: 18,
+			},
+		},
+		{
+			file: "json_not_formatted_6_gop",
+			cfg: &config{
+				add:  []string{"json"},
+				line: "1,50",
+			},
+		},
+		{
+			file: "json_all_structs_gop",
 			cfg: &config{
 				add: []string{"json"},
 				all: true,
